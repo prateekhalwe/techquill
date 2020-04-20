@@ -11,10 +11,9 @@ from email.MIMEText import MIMEText
 
 
 url_post = "https://www.mohfw.gov.in/"
-#toaddr = ["prateekd@juniper.net","bhp@juniper.net", "sanchal@juniper.net", "rkhali@juniper.net", "vaishwarya@juniper.net","kkotiklapudi@juniper.net", "divyansh@juniper.net"]
-toaddr = ["prateekd@juniper.net"]
+toaddr = ["prateekd@xyz.net"]    #todo
 err_list = []
-fromaddr = "jcockpit-covidtracker@juniper.net"
+fromaddr = "cockpit-covidtracker@xyz.com" #todo
 
 def start_server():
     """Initializes a SMTP server to be used later.
@@ -25,7 +24,7 @@ def start_server():
     try:
 	print("Initializing SMTP Server Client")
         logging.debug("Initializing SMTP Server Client")
-        server = smtplib.SMTP(host = "contrail-ubm-harmeets.ccp.juniper.net")
+        server = smtplib.SMTP(host = "xyz")
 
     except Exception as E:
         print("Exception in start_server")
@@ -82,13 +81,13 @@ if (__name__ == "__main__"):
 	inc = 0 
 	while True:
 		cases = get_num_covid_cases()
-		send_mail(mail_server, toaddr, str('jcockpit-alert: covidtracker'), "Hello, " "\n" " \n" " \nThe #covid-19 cases has been increased by " + str(inc) + " in the last 1hr." " current #cases: " + str(cases) + "\n" "\n" "--Thanks," " \n" "jcockpit", 'plain')	
+		send_mail(mail_server, toaddr, str('cockpit-alert: covidtracker'), "Hello, " "\n" " \n" " \nThe #covid-19 cases has been increased by " + str(inc) + " in the last 1hr." " current #cases: " + str(cases) + "\n" "\n" "--Thanks," " \n" "cockpit", 'plain')	
 		if (bool(prev_cases)):
 			if (prev_cases < cases):
 				inc = cases - prev_cases
 				#print("#cases current  : {}".format(cases))
 				#print("#cases 1hr. bef : {}".format(prev_cases))
 				#print("The covid-19 cases has been increased in the last 1 hr. by {}".format((cases - prev_cases)))
-				send_mail(mail_server, toaddr, str('jcockpit-alert: covidtracker'), "Hello, " "\n" " \n" " \nThe #covid-19 cases has been increased by " + str(inc) + " in the last 1hr." " current #cases: " + str(cases) + "\n" "\n" "--Thanks," " \n" "jcockpit", 'plain')	
+				send_mail(mail_server, toaddr, str('cockpit-alert: covidtracker'), "Hello, " "\n" " \n" " \nThe #covid-19 cases has been increased by " + str(inc) + " in the last 1hr." " current #cases: " + str(cases) + "\n" "\n" "--Thanks," " \n" "cockpit", 'plain')	
 		prev_cases = cases
 		time.sleep(60*60)
